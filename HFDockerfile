@@ -7,7 +7,9 @@ WORKDIR /app
 # 将时区设置为上海（中国标准时间，CST，UTC+8）
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-COPY . .
+
+# 克隆clewd仓库
+RUN git clone -b master https://github.com/cj1354421348/clewd.git .
 RUN sed -i -E '/res\.write\(`<!DOCTYPE html>.*<\/html>`\);/d' /app/clewd.js
 
 # 安装依赖

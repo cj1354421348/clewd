@@ -5,6 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 7860:7860
+      - "7860:7860"
     volumes:
       - .:/app
+    user: "root"  # 以node用户运行
