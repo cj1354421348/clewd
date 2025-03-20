@@ -3,8 +3,20 @@ FROM node:20.4
 
 # Set the working directory in the container
 WORKDIR /app
-
-# Copy the package.json and package-lock.json files to the container
+# 将时区设置为上海（中国标准时间，CST，UTC+8）
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# 设置环境变量
+ENV PORT=7860
+ENV xmlPlot=false
+ENV padtxt=0
+ENV ClearFlags=false
+ENV FullColon=false
+ENV LogMessages=false
+ENV PassParams=false
+ENV PreventImperson=false
+ENV PromptExperiments=false
+ENV SystemExperiments=false
 COPY package*.json ./
 
 # Install the dependencies
